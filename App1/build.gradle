@@ -1,0 +1,6 @@
+task hello{
+    doLast{
+        print 'welcome to gradle'
+    }
+    println '${project.buildDir}'
+}
