@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/App1/App1.iml" filepath="$PROJECT_DIR$/App1/App1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Gradle.iml" filepath="$PROJECT_DIR$/Gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gradle0_Template/Gradle0_Template.iml" filepath="$PROJECT_DIR$/Gradle0_Template/Gradle0_Template.iml" />
     </modules>
   </component>
 </project>

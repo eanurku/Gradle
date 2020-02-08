@@ -1,0 +1,91 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+dependencies{
+
+    compile project(':')
+    compile project(':Gradle18_Shared')
+    compile project(':Gradle17_ClientShared')
+    testCompile project(':Gradle18_Shared').sourceSets.test.output
+    testCompile project(':Gradle17_ClientShared').sourceSets.test.output
+
+    compile 'org.springframework:spring-aop:5.0.3.RELEASE'
+}
+
+jar{
+    archivesBaseName ='Gradle16_client'
+    from project(':Gradle17_ClientShared').sourceSets.main.output
+
+    manifest{
+        attributes(
+                'SVN-Revision': 'Dummy',
+                'Jenkins-Job-name':jenkinsJobName,
+                'Jenkins-Build-Number':jenkinsBuildNumber,
+                'Date':new Date().format('MM/dd/yyyy HH:mm:ss')
+        )
+    }
+}
+
+task copyResourcesForLocalRun(type:Copy){
+    from 'environments/dev/DevDB1/properties'
+    into 'build/resources/main'
+}
+
+
+task CopyEnvResources(type:Copy){
+
+    from 'environments'
+    into 'build/resources/main/environments'
+    exclude '**/*.jks'
+    filter(ReplaceTokens,tokens:[
+            buildLabel:version+'_'+jenkinsBuildNumber
+    ])
+
+    doLast{
+        copy{
+            from 'environments'
+            into 'build/resources/main/environments'
+            include '**/*.jks'
+        }
+    }
+
+}
+task clientpackazeZip(type:Zip){
+
+    doFirst{
+        file('build/BUILD').text=jenkinsBuildNumber
+    }
+    into ('environments/'){
+        from 'build/resources/main/environments'
+    }
+    into ('bin/'){
+
+        from 'build/'
+        include 'BUILD'
+
+        from 'build/libs'
+        include 'Gradle16_client*.jar'
+
+        from configurations.runtime
+        include 'Gradle18_Shared*.jar'
+    }
+    into ('lib/'){
+
+        from configurations.runtime
+        exclude 'com/**'
+        exclude 'ant*.jar'
+        exclude '*.xml'
+        exclude 'Gradle18_Shared*.jar'
+        exclude 'Gradle17_ClientShared*.jar'
+    }
+    from zipTree("$projectDir/../jre/jre-1.5.3-windows.zip")
+
+    into 'Gradle16_client'
+    archiveName ='Gradle16_client'+version+'_'+jenkinsBuildNumber+'.zip'
+
+
+}
+
+copyResourcesForLocalRun.dependsOn jar
+test.dependsOn copyResourcesForLocalRun
+clientpackazeZip.dependsOn CopyEnvResources,test
+build.dependsOn clientpackazeZip

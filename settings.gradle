@@ -1,0 +1,21 @@
+rootProject.name='GradleProjectMain'
+include 'Gradle1_TaskWithAction',
+        'Gradle2_taskWithoutAction',
+        'Gradle3_JarTask',
+        'Gradle3_ProjectObject',
+        'Gradle4_TaskDependencies',
+        'Gradle5_applyPlugins',
+        'Gradle6_Dependencies',
+        'Gradle7_CopyTask',
+        'Gradle8_Testtask' ,
+        'Gradle9_SourceSets',
+        'Gradle10_SourceSets2',
+        'Gradle11_allprojects',
+        'Gradle12_subprojects',
+        'Gradle13_JarTaskDisabled',
+        'Gradle14_JenkinsEnvVariables',
+        'Gradle17_ClientShared',
+        'Gradle18_Shared',
+        'Gradle15_Server',
+        'Gradle16_client'
+        'Gradle0_Template'

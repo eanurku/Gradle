@@ -1,0 +1,10 @@
+plugins{
+    id 'java'
+}
+
+task copyResourcesFOrLocalRun(type :Copy){
+    from 'env/dev'
+    into "$buildDir/resources"
+}
+
+build.dependsOn copyResourcesFOrLocalRun

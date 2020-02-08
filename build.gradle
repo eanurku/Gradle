@@ -1,0 +1,74 @@
+buildscript {
+    repositories {
+
+        mavenCentral()
+
+        maven { url ''}
+        maven { url ''}
+        maven { url ''}
+    }
+    dependencies {
+        classpath group: 'net.researchgate', name: 'gradle-release', version: '2.4.0'
+    }
+}
+
+ext{
+    jenkinsJobName=System.getenv("JOB_NAME")
+    if(jenkinsJobName==null||jenkinsJobName=='unspecified'){
+        jenkinsJobName='Local'
+    }
+    jenkinsBuildNumber=System.getenv("BUILD_NAME")
+    if(jenkinsBuildNumber==null||jenkinsBuildNumber=='unspecified'){
+        jenkinsBuildNumber='Dev'
+    }
+
+}
+//make things available in parent and child projects
+allprojects {
+
+    apply plugin:'java'
+    apply plugin:'idea'
+    apply plugin:'jacoco'
+    apply plugin:'maven-publish'
+  //  apply plugin:'net.researchgate.release'
+
+
+    repositories{
+        mavenCentral()
+
+        maven { url ''}
+        maven { url ''}
+        maven { url ''}
+    }
+
+    group='org.anurag.personal'
+    sourceCompatibility=1.8
+    targetCompatibility=1.8
+
+    dependencies {
+        testCompile (group:'jmock',name:'jmock',version:'1.2.0'){
+            transitive=false
+        }
+        testCompile ('junit:junit:4.12')
+        testCompile group:'jmock',name:'jmock-cglib',version:'1.2.0'
+        testCompile group:'org.mockito',name:'mockito-all',version:'1.9.0'
+    }
+    //version=1.0
+
+//    jacoco{
+//        toolVersion='0.7.8'
+//    }
+//    release{
+//        failonUnversionedFiles=false
+//    }
+}
+
+// make things available in child projects only
+subprojects {
+    apply plugin:'maven-publish'
+
+    //version=1.1
+
+}
+
+jar.enabled=false

@@ -1,0 +1,10 @@
+
+dependencies {
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.11.Final'
+
+}
+//java and other plugins defined in allprojects
+// dependencies defined in allprojects
+//repositories is defined in allproject section in parent project
+//version is defined in gradle.properties file

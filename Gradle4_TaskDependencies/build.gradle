@@ -1,0 +1,31 @@
+task task1(dependsOn: 'task2'){
+    doLast{
+        println 'first task'
+    }
+
+}
+
+task task2{
+    dependsOn 'task3'
+    doLast{
+        println 'second task'
+    }
+
+}
+
+task task3{
+
+    doLast{
+        println 'second task'
+    }
+
+}
+task task4{
+
+    doLast{
+        println 'fourth task'
+    }
+
+}
+
+task4.dependsOn task3

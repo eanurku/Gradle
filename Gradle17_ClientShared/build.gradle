@@ -1,0 +1,11 @@
+
+
+dependencies{
+
+
+    compile project(':')
+    compile project(':Gradle18_Shared')
+    testCompile project(':Gradle18_Shared').sourceSets.test.output
+
+
+}

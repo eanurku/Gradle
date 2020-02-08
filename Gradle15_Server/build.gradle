@@ -1,0 +1,79 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+dependencies{
+
+    compile project(':')
+    //make parent  main sources available for main and test sources in current child project
+    compile project(':Gradle18_Shared') //.sourceSets.main.output comment out to make Gradle18_Shared jar available in runtime configuration and use in serverPackazeZip  task here
+    //make parent test source code available for test source code only
+    testCompile project(':Gradle18_Shared').sourceSets.test.output
+
+    compile('xerces:xercesImpl:2.11.0'){
+        transitive=false
+    }
+
+    compile('org.apache.ant:ant:1.8.3'){
+        transitive=false
+    }
+}
+
+task copyResourcesForLocalRun(type:Copy){
+    from 'environments/dev/DevDB1/properties'
+    into 'build/resources/main'
+}
+
+
+task CopyEnvResources(type:Copy){
+
+    from 'environments'
+    into 'build/resources/main/environments'
+    exclude '**/*.jks'
+    filter(ReplaceTokens,tokens:[
+            buildLabel:version+'_'+jenkinsBuildNumber
+    ])
+
+    doLast{
+        copy{
+            from 'environments'
+            into 'build/resources/main/environments'
+            include '**/*.jks'
+        }
+    }
+
+}
+
+task serverPackazeZip(type:Zip){
+
+    doFirst{
+        file('build/BUILD').text=jenkinsBuildNumber
+    }
+    into ('environments/'){
+        from 'build/resources/main/environments'
+    }
+    into ('bin/'){
+
+        from 'build/'
+        include 'BUILD'
+
+        from 'build/libs'
+        include 'Gradle15_Server*.jar'
+
+        from configurations.runtime
+        include 'Gradle18_Shared*.jar'
+    }
+    into ('lib/'){
+
+        from configurations.runtime
+        exclude 'com/**'
+        exclude 'ant*.jar'
+        exclude '*.xml'
+        exclude 'Gradle18_Shared*.jar'
+    }
+
+    into 'Gradle15_Server'
+    archiveName ='Gradle15_Server'+version+'_'+jenkinsBuildNumber+'.zip'
+
+
+}
+test.dependsOn copyResourcesForLocalRun ,jar
+serverPackazeZip.dependsOn CopyEnvResources,test
+build.dependsOn serverPackazeZip

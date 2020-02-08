@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="$USER_HOME$/Apps/gradle-6.1.1-bin/gradle-6.1.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Gradle10_SourceSets2" />
+            <option value="$PROJECT_DIR$/Gradle11_allprojects" />
+            <option value="$PROJECT_DIR$/Gradle12_subprojects" />
+            <option value="$PROJECT_DIR$/Gradle13_JarTaskDisabled" />
+            <option value="$PROJECT_DIR$/Gradle14_JenkinsEnvVariables" />
+            <option value="$PROJECT_DIR$/Gradle15_Server" />
+            <option value="$PROJECT_DIR$/Gradle16_client" />
+            <option value="$PROJECT_DIR$/Gradle17_ClientShared" />
+            <option value="$PROJECT_DIR$/Gradle18_Shared" />
+            <option value="$PROJECT_DIR$/Gradle1_TaskWithAction" />
+            <option value="$PROJECT_DIR$/Gradle2_taskWithoutAction" />
+            <option value="$PROJECT_DIR$/Gradle3_JarTask" />
+            <option value="$PROJECT_DIR$/Gradle3_ProjectObject" />
+            <option value="$PROJECT_DIR$/Gradle4_TaskDependencies" />
+            <option value="$PROJECT_DIR$/Gradle5_applyPlugins" />
+            <option value="$PROJECT_DIR$/Gradle6_Dependencies" />
+            <option value="$PROJECT_DIR$/Gradle7_CopyTask" />
+            <option value="$PROJECT_DIR$/Gradle8_Testtask" />
+            <option value="$PROJECT_DIR$/Gradle9_SourceSets" />
+          </set>
+        </option>
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

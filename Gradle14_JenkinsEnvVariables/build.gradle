@@ -1,0 +1,14 @@
+
+jar{
+
+    manifest{
+        attributes(
+            'SVN-Revision': 'Dummy',
+            'Jenkins-Job-name':jenkinsJobName,
+            'Jenkins-Build-Number':jenkinsBuildNumber,
+             'Date':new Date().format('MM/dd/yyyy HH:mm:ss')
+        )
+    }
+
+
+}

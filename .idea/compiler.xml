@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="GradleProjectMain.Gradle10_.main" target="1.8" />
+      <module name="GradleProjectMain.Gradle10_.test" target="1.8" />
+      <module name="GradleProjectMain.Gradle11.main" target="1.8" />
+      <module name="GradleProjectMain.Gradle11.test" target="1.8" />
+      <module name="GradleProjectmain.Gradle8_Testtask.main" target="1.8" />
+      <module name="GradleProjectmain.Gradle8_Testtask.test" target="1.8" />
+      <module name="GradleProjectMain.Gradle9.main" target="1.8" />
+      <module name="GradleProjectMain.Gradle9.test" target="1.8" />
+      <module name="GradleProjectMain.Gradle_JarTaskDisabled.main" target="1.8" />
+      <module name="GradleProjectMain.Gradle_JarTaskDisabled.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

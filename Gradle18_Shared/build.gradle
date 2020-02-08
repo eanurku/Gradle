@@ -1,0 +1,150 @@
+dependencies {
+
+
+    compile (project(':')) //adding dependency on parent sources codes by using  SourceSets.main.output of parent
+
+    compile ('org.springframework:spring-core:5.0.3.RELEASE'){
+        exclude group :'org.springframework',module:'spring-jcl'
+    }
+
+}
+test{
+
+//    jacoco{
+//        excludes =['org.apache.log4j.*']
+//    }
+    include '**/*Test.class'
+    exclude '**/*MainTest.class'
+    systemProperty "java.library.path1", "/home/xyz/abc;/home/an/fff"
+    systemProperty "java.library.path1", "/home/xyz/abc;/home/an/fff"
+}
+jar{
+    manifest{
+        attributes(
+                'SVN-Revision': 'Dummy',
+                'Jenkins-Job-name':jenkinsJobName,
+                'Jenkins-Build-Number':jenkinsBuildNumber,
+                'Date':new Date().format('MM/dd/yyyy HH:mm:ss')
+        )
+    }
+}
+
+
+task myjar1(type: Jar){
+
+    baseName='myjar1api'
+
+    from sourceSets.main.output
+
+    include 'com/MYException1.class'
+    include 'com/MYException2.class'
+    include 'com/shared/Client.class'
+
+
+    manifest{
+        attributes(
+                'SVN-Revision': 'Dummy',
+                'Jenkins-Job-name':jenkinsJobName,
+                'Jenkins-Build-Number':jenkinsBuildNumber,
+                'Date':new Date().format('MM/dd/yyyy HH:mm:ss')
+        )
+    }
+}
+
+task myjar2(type: Jar){
+
+    baseName='myjar2api'
+
+    from sourceSets.main.output
+
+    include 'com/MYException1.class'
+    include 'com/MYException2.class'
+
+
+    manifest{
+        attributes(
+                'SVN-Revision': 'Dummy',
+                'Jenkins-Job-name':jenkinsJobName,
+                'Jenkins-Build-Number':jenkinsBuildNumber,
+                'Date':new Date().format('MM/dd/yyyy HH:mm:ss')
+        )
+    }
+}
+
+task myjar1packazeZip(type:Zip){
+
+
+    doFirst {
+        file("$projectDir/build/BUILD").text=jenkinsBuildNumber
+    }
+
+    from ('build/libs'){
+        include 'myjar1api*.jar'
+    }
+    from ('build'){
+        include 'BUILD'
+    }
+    into 'my-jar1-api'
+    archiveName ='my-jar1-api-'+version+'_'+jenkinsBuildNumber+'.zip'
+
+}
+task myjar2packazeZip(type:Zip){
+
+
+    doFirst {
+        file("$projectDir/build/BUILD").text=jenkinsBuildNumber
+    }
+
+    from ('build/libs'){
+        include 'myjar2api*.jar'
+    }
+    from ('build'){
+        include 'BUILD'
+    }
+    into 'my-jar2-api'
+    archiveName ='my-jar2-api-'+version+'_'+jenkinsBuildNumber+'.zip'
+
+}
+task packazeZip{
+
+}
+publishing{
+    publications{
+
+        firstApi(MavenPublication){
+
+            groupId group
+            artifactId 'My-Jar1-Api'
+            version version
+            artifact myjar1
+        }
+        secondApi(MavenPublication){
+
+            groupId group
+            artifactId 'My-Jar2-Api'
+            version version
+            artifact myjar2
+        }
+    }
+
+    repositories {
+        maven{
+            url ="file://$buildDir/localrepo" //for local testing only
+            if(project.version.endsWith('-SNAPSHOT')){
+                name 'au.snapshot.repo'
+                url 'snapshot repo'
+            }
+            else{
+                name 'au.local.repo'
+                url url
+            }
+        }
+    }
+
+}
+jar.dependsOn myjar1,myjar2
+test.dependsOn jar
+myjar1packazeZip.dependsOn test
+myjar2packazeZip.dependsOn test
+packazeZip.dependsOn myjar1packazeZip,myjar2packazeZip
+build.dependsOn packazeZip

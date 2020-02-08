@@ -1,0 +1,10 @@
+task hello{
+    doFirst{
+        println 'welcome to gradle first'
+    }
+    doLast{
+        print 'welcome to gradle last'
+    }
+}
+
+

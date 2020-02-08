@@ -1,0 +1,12 @@
+
+dependencies {
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.11.Final'
+
+}
+jar.enabled=false
+
+//repositories is defined in allproject section in parent project
+//java plugin is defined in subprojects section of parent
+//version is defined in subproject section of parent
+//version of subproject override over appprojects version in subprojects.
