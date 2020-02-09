@@ -12,6 +12,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Gradle0_Template" />
             <option value="$PROJECT_DIR$/Gradle10_SourceSets2" />
             <option value="$PROJECT_DIR$/Gradle11_allprojects" />
             <option value="$PROJECT_DIR$/Gradle12_subprojects" />
@@ -21,7 +22,9 @@
             <option value="$PROJECT_DIR$/Gradle16_client" />
             <option value="$PROJECT_DIR$/Gradle17_ClientShared" />
             <option value="$PROJECT_DIR$/Gradle18_Shared" />
+            <option value="$PROJECT_DIR$/Gradle19_DirectDependenciesOnJarOrZip" />
             <option value="$PROJECT_DIR$/Gradle1_TaskWithAction" />
+            <option value="$PROJECT_DIR$/Gradle20_IntegrationTesting" />
             <option value="$PROJECT_DIR$/Gradle2_taskWithoutAction" />
             <option value="$PROJECT_DIR$/Gradle3_JarTask" />
             <option value="$PROJECT_DIR$/Gradle3_ProjectObject" />
