@@ -1,5 +1,6 @@
 rootProject.name='GradleProjectMain'
-include 'Gradle1_TaskWithAction',
+include 'Gradle0_Template',
+        'Gradle1_TaskWithAction',
         'Gradle2_taskWithoutAction',
         'Gradle3_JarTask',
         'Gradle3_ProjectObject',
@@ -17,5 +18,6 @@ include 'Gradle1_TaskWithAction',
         'Gradle17_ClientShared',
         'Gradle18_Shared',
         'Gradle15_Server',
-        'Gradle16_client'
-        'Gradle0_Template'
+        'Gradle16_client',
+        'Gradle19_DirectDependenciesOnJarOrZip',
+        'Gradle20_IntegrationTesting'

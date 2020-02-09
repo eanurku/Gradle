@@ -6,9 +6,11 @@ buildscript {
         maven { url ''}
         maven { url ''}
         maven { url ''}
+        //add maven internal or external url
     }
     dependencies {
         classpath group: 'net.researchgate', name: 'gradle-release', version: '2.4.0'
+        //add internal jars of organisation .
     }
 }
 
@@ -39,6 +41,7 @@ allprojects {
         maven { url ''}
         maven { url ''}
         maven { url ''}
+        //add maven internal or external url
     }
 
     group='org.anurag.personal'

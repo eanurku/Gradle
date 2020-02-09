@@ -14,6 +14,8 @@ gradle dependencies --configuration runtime/compiletime
 
 gradle {subproject}:dependencies --configuration runtime/compiletime
 
+run task in subprojects:
+ex:gradle :Gradle19_DirectDependenciesOnJarOrZip:clean build 
 
 Define settings.gradle file for project with multiple modules:
 

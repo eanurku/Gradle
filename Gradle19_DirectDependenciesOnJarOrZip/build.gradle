@@ -1,0 +1,30 @@
+
+
+dependencies{
+
+    compile files('lib/jackson-databind-2.9.8.jar','lib/jackson-annotations-2.9.8.jar')
+    compile fileTree(dir:  'lib-dev',include:  '*.jar')
+}
+
+//task to get all compile dependencies
+//use configurations.runtime.each for runtime dependencies
+task getAllCompileDependencies{
+    doLast{
+         configurations.compile.each {File file -> println file}
+    }
+}
+//TO Do
+jar{
+
+    from configurations.runtime
+
+    manifest{
+       attributes (
+               'Main-Class' :'com.App',
+               'Class-Path': 'jackson-databind-2.9.8.jar '
+
+       )
+    }
+}
+
+build.dependsOn getAllCompileDependencies

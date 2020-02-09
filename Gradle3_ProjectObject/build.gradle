@@ -2,7 +2,7 @@ task hello{
     doLast{
         println 'welcome to gradle'
         println "$projectDir" //current project
-        println "$buildDir"   //current project build directory
+        println "${buildDir}"   //current project build directory
         println "$rootDir"    //absolute path
         println "$project.name"
         println "$project.hello.name"
