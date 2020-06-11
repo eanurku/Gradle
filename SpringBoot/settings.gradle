@@ -1,0 +1,2 @@
+rootProject.name='SpringBootApp'
+include 'SpringBoot1_SampleRestService'
